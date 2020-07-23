@@ -41,11 +41,21 @@ class QuestionViewControllerTest: XCTestCase {
         var callbackCount = 0
         let sut = makeSUT(options: ["A1", "A2"]) { _ in callbackCount += 1 }
         
+        // does not happen via UI; only programmatically
+        sut.tableView.deselect(row: 0)
+        XCTAssertEqual(callbackCount, 0)
+        
         sut.tableView.select(row: 0)
         XCTAssertEqual(callbackCount, 1)
         
         sut.tableView.deselect(row: 0)
         XCTAssertEqual(callbackCount, 1)
+        
+        sut.tableView.select(row: 0)
+        XCTAssertEqual(callbackCount, 2)
+        
+        sut.tableView.deselect(row: 0)
+        XCTAssertEqual(callbackCount, 2)
     }
     
     func test_optionsSelected_withMultipleSelectionEnabled_notifiesDelegateSelection() {
