@@ -9,8 +9,6 @@
 import UIKit
 
 class QuestionViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-
-    
     
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
