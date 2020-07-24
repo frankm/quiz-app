@@ -10,6 +10,10 @@
 		199FCFCB24CA52AE0022EBD3 /* TableViewHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FCFCA24CA52AE0022EBD3 /* TableViewHelpers.swift */; };
 		199FCFCD24CAB5900022EBD3 /* CorrectAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 199FCFCC24CAB5900022EBD3 /* CorrectAnswerCell.xib */; };
 		199FCFCF24CAC15B0022EBD3 /* WrongAnswerCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 199FCFCE24CAC15B0022EBD3 /* WrongAnswerCell.xib */; };
+		199FCFD124CB95340022EBD3 /* TableViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FCFD024CB95340022EBD3 /* TableViewExtensions.swift */; };
+		199FCFD324CB96130022EBD3 /* PresentableAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FCFD224CB96130022EBD3 /* PresentableAnswer.swift */; };
+		199FCFD524CB96740022EBD3 /* CorrectAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FCFD424CB96740022EBD3 /* CorrectAnswerCell.swift */; };
+		199FCFD724CB969A0022EBD3 /* WrongAnswerCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199FCFD624CB969A0022EBD3 /* WrongAnswerCell.swift */; };
 		19E99B9024C81355005C7E7C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E99B8F24C81355005C7E7C /* AppDelegate.swift */; };
 		19E99B9224C81355005C7E7C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 19E99B9124C81355005C7E7C /* SceneDelegate.swift */; };
 		19E99B9924C81358005C7E7C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 19E99B9824C81358005C7E7C /* Assets.xcassets */; };
@@ -36,6 +40,10 @@
 		199FCFCA24CA52AE0022EBD3 /* TableViewHelpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHelpers.swift; sourceTree = "<group>"; };
 		199FCFCC24CAB5900022EBD3 /* CorrectAnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CorrectAnswerCell.xib; sourceTree = "<group>"; };
 		199FCFCE24CAC15B0022EBD3 /* WrongAnswerCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WrongAnswerCell.xib; sourceTree = "<group>"; };
+		199FCFD024CB95340022EBD3 /* TableViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewExtensions.swift; sourceTree = "<group>"; };
+		199FCFD224CB96130022EBD3 /* PresentableAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentableAnswer.swift; sourceTree = "<group>"; };
+		199FCFD424CB96740022EBD3 /* CorrectAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CorrectAnswerCell.swift; sourceTree = "<group>"; };
+		199FCFD624CB969A0022EBD3 /* WrongAnswerCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WrongAnswerCell.swift; sourceTree = "<group>"; };
 		19E99B8C24C81355005C7E7C /* QuizApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = QuizApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		19E99B8F24C81355005C7E7C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		19E99B9124C81355005C7E7C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -73,6 +81,7 @@
 		19E99B8324C81355005C7E7C = {
 			isa = PBXGroup;
 			children = (
+				199FCFD024CB95340022EBD3 /* TableViewExtensions.swift */,
 				19E99B8E24C81355005C7E7C /* QuizApp */,
 				19E99BA524C81358005C7E7C /* QuizAppTests */,
 				19E99B8D24C81355005C7E7C /* Products */,
@@ -97,7 +106,10 @@
 				19E99BB524C81A38005C7E7C /* QuestionViewController.xib */,
 				19E99BB924CA3C5B005C7E7C /* ResultsViewController.swift */,
 				19E99BBB24CA3D6A005C7E7C /* ResultsViewController.xib */,
+				199FCFD224CB96130022EBD3 /* PresentableAnswer.swift */,
+				199FCFD424CB96740022EBD3 /* CorrectAnswerCell.swift */,
 				199FCFCC24CAB5900022EBD3 /* CorrectAnswerCell.xib */,
+				199FCFD624CB969A0022EBD3 /* WrongAnswerCell.swift */,
 				199FCFCE24CAC15B0022EBD3 /* WrongAnswerCell.xib */,
 				19E99B9824C81358005C7E7C /* Assets.xcassets */,
 				19E99B9A24C81358005C7E7C /* LaunchScreen.storyboard */,
@@ -223,7 +235,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				19E99B9024C81355005C7E7C /* AppDelegate.swift in Sources */,
+				199FCFD124CB95340022EBD3 /* TableViewExtensions.swift in Sources */,
+				199FCFD524CB96740022EBD3 /* CorrectAnswerCell.swift in Sources */,
 				19E99B9224C81355005C7E7C /* SceneDelegate.swift in Sources */,
+				199FCFD324CB96130022EBD3 /* PresentableAnswer.swift in Sources */,
+				199FCFD724CB969A0022EBD3 /* WrongAnswerCell.swift in Sources */,
 				19E99BB424C8153C005C7E7C /* QuestionViewController.swift in Sources */,
 				19E99BBA24CA3C5B005C7E7C /* ResultsViewController.swift in Sources */,
 			);
