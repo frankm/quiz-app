@@ -24,7 +24,7 @@ class ResultsViewController: UIViewController, UITableViewDataSource, UITableVie
     override func viewDidLoad() {
         super.viewDidLoad()
         headerLabel.text = summary
-        tableView.rowHeight = UITableView.automaticDimension
+        tableView.rowHeight = UITableViewAutomaticDimension
         
         tableView.register(CorrectAnswerCell.self)
         tableView.register(WrongAnswerCell.self)
