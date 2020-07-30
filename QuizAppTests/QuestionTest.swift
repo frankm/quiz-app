@@ -37,6 +37,5 @@ class QuestionTest: XCTestCase {
         XCTAssertNotEqual(Question.singleAnswer("a string"), Question.multipleAnswer("another string"))
         XCTAssertNotEqual(Question.singleAnswer("a string"), Question.multipleAnswer("a string"))
     }
-
     
 }

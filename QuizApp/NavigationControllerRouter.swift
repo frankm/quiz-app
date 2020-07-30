@@ -13,12 +13,12 @@ enum Question<T: Hashable> : Hashable {
     case singleAnswer(T)
     case multipleAnswer(T)
     
-    var hashValue: Int {
+    func hash(into hasher: inout Hasher) {
         switch self {
         case .singleAnswer(let value):
-            return value.hashValue
+            hasher.combine(value)
         case .multipleAnswer(let value):
-            return value.hashValue
+            hasher.combine(value)
         }
     }
     
