@@ -8,11 +8,11 @@
 
 import Foundation
 
-enum Question<T: Hashable> : Hashable {
+public enum Question<T: Hashable> : Hashable {
     case singleAnswer(T)
     case multipleAnswer(T)
     
-    func hash(into hasher: inout Hasher) {
+    public func hash(into hasher: inout Hasher) {
         switch self {
         case .singleAnswer(let value):
             hasher.combine(value)
@@ -21,7 +21,7 @@ enum Question<T: Hashable> : Hashable {
         }
     }
     
-    static func ==(lhs: Question<T>, rhs: Question<T>) -> Bool {
+    public static func ==(lhs: Question<T>, rhs: Question<T>) -> Bool {
         switch (lhs, rhs) {
         case (.singleAnswer(let a), .singleAnswer(let b)):
             return a == b
