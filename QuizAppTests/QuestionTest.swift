@@ -10,25 +10,32 @@ import XCTest
 @testable import QuizEngine
 
 class QuestionTest: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func test_hashValue_singleAnswer_returnsTypeHash() {
+        let type = "a string"
+        let sut = Question.singleAnswer(type)
+        
+        XCTAssertEqual(sut.hashValue, type.hashValue)
     }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    
+    func test_hashValue_multipleAnswer_returnsTypeHash() {
+        let type = "a string"
+        let sut = Question.multipleAnswer(type)
+        
+        XCTAssertEqual(sut.hashValue, type.hashValue)
     }
+    
+    func test_equal_singleAnswer_isEqual() {
+        XCTAssertEqual(Question.singleAnswer("a string"), Question.singleAnswer("a string"))
+        XCTAssertEqual(Question.multipleAnswer("a string"), Question.multipleAnswer("a string"))
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
+    
+    func test_notEqual_singleAnswer_isNotEqual() {
+        XCTAssertNotEqual(Question.singleAnswer("a string"), Question.singleAnswer("another string"))
+        XCTAssertNotEqual(Question.multipleAnswer("a string"), Question.multipleAnswer("another string"))
+        XCTAssertNotEqual(Question.singleAnswer("a string"), Question.multipleAnswer("another string"))
+        XCTAssertNotEqual(Question.singleAnswer("a string"), Question.multipleAnswer("a string"))
     }
-
+    
 }
