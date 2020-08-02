@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        let window = UIWindow(windowScene: windowScene)
+        _ = UIWindow(windowScene: windowScene)
 
 //        let question1 = Question.singleAnswer("What is Mike's nationality?")
 //        let question2 = Question.multipleAnswer("What are Caio's nationality?")
