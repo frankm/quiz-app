@@ -60,10 +60,10 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "19AD9D3524D15001008B8A57"
+               BlueprintIdentifier = "199DB51C24DAEFBE00E35187"
                BuildableName = "QuizEngine_iOSTests.xctest"
                BlueprintName = "QuizEngine_iOSTests"
-               ReferencedContainer = "container:../QuizEngine/QuizEngine.xcodeproj">
+               ReferencedContainer = "container:../Engine/QuizEngine.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
