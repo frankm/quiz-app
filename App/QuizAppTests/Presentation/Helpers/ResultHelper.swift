@@ -9,9 +9,8 @@
 @testable import QuizEngine
 
 extension Result {
-    init(answers: [Question: Answer], score: Int) {
-        self.answers = answers
-        self.score = score
+    static func make(answers: [Question: Answer] = [:], score: Int = 0) -> Result<Question, Answer> {
+        return Result(answers: answers, score: score)
     }
 }
  
@@ -21,9 +20,10 @@ extension Result: Equatable where Answer: Equatable {
     }
 }
 
-extension Result: Hashable where Answer: Equatable {
-    public var hashValue: Int {
-        return 1
+extension Result: Hashable where Answer: Hashable {
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(answers)
+        hasher.combine(score)
     }
 }
  
