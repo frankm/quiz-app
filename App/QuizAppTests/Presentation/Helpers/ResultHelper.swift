@@ -9,10 +9,9 @@
 @testable import QuizEngine
 
 extension Result {
-    init(answers: [Question: Answer], score: Int) {
-        self.answers = answers
-        self.score = score
-    }    
+    static func make(answers: [Question: Answer] = [:], score: Int = 0) -> Result<Question, Answer> {
+        return Result(answers: answers, score: score)
+    }
 }
  
 extension Result: Equatable where Answer: Equatable {
