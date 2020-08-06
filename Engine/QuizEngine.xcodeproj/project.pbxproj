@@ -14,10 +14,10 @@
 		199DB50924DAEA9500E35187 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DB50524DAEA9500E35187 /* Game.swift */; };
 		199DB51E24DAEFBE00E35187 /* QuizEngine.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 199DB51524DAEFBE00E35187 /* QuizEngine.framework */; };
 		199DB52C24DAF44F00E35187 /* FlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DB50C24DAEAAD00E35187 /* FlowTest.swift */; };
-		199DB52D24DAF44F00E35187 /* GameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DB50A24DAEAAD00E35187 /* GameTest.swift */; };
+		199DB52D24DAF44F00E35187 /* DeprecatedGameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DB50A24DAEAAD00E35187 /* DeprecatedGameTest.swift */; };
 		199DB52E24DAF44F00E35187 /* RouterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DB50B24DAEAAD00E35187 /* RouterSpy.swift */; };
 		199DB52F24DAF45400E35187 /* FlowTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DB50C24DAEAAD00E35187 /* FlowTest.swift */; };
-		199DB53024DAF45400E35187 /* GameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DB50A24DAEAAD00E35187 /* GameTest.swift */; };
+		199DB53024DAF45400E35187 /* DeprecatedGameTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DB50A24DAEAAD00E35187 /* DeprecatedGameTest.swift */; };
 		199DB53124DAF45400E35187 /* RouterSpy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DB50B24DAEAAD00E35187 /* RouterSpy.swift */; };
 		199DB53224DAF45F00E35187 /* Flow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DB50424DAEA9500E35187 /* Flow.swift */; };
 		199DB53324DAF45F00E35187 /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = 199DB50524DAEA9500E35187 /* Game.swift */; };
@@ -53,7 +53,7 @@
 		199DB50324DAEA9500E35187 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		199DB50424DAEA9500E35187 /* Flow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Flow.swift; sourceTree = "<group>"; };
 		199DB50524DAEA9500E35187 /* Game.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
-		199DB50A24DAEAAD00E35187 /* GameTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GameTest.swift; sourceTree = "<group>"; };
+		199DB50A24DAEAAD00E35187 /* DeprecatedGameTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeprecatedGameTest.swift; sourceTree = "<group>"; };
 		199DB50B24DAEAAD00E35187 /* RouterSpy.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterSpy.swift; sourceTree = "<group>"; };
 		199DB50C24DAEAAD00E35187 /* FlowTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FlowTest.swift; sourceTree = "<group>"; };
 		199DB51524DAEFBE00E35187 /* QuizEngine.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = QuizEngine.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -133,7 +133,7 @@
 			children = (
 				199DB4F824DAE95E00E35187 /* Info.plist */,
 				199DB50C24DAEAAD00E35187 /* FlowTest.swift */,
-				199DB50A24DAEAAD00E35187 /* GameTest.swift */,
+				199DB50A24DAEAAD00E35187 /* DeprecatedGameTest.swift */,
 				199DB50B24DAEAAD00E35187 /* RouterSpy.swift */,
 			);
 			path = QuizEngineTests;
@@ -327,7 +327,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				199DB52F24DAF45400E35187 /* FlowTest.swift in Sources */,
-				199DB53024DAF45400E35187 /* GameTest.swift in Sources */,
+				199DB53024DAF45400E35187 /* DeprecatedGameTest.swift in Sources */,
 				199DB53124DAF45400E35187 /* RouterSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,7 +349,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				199DB52C24DAF44F00E35187 /* FlowTest.swift in Sources */,
-				199DB52D24DAF44F00E35187 /* GameTest.swift in Sources */,
+				199DB52D24DAF44F00E35187 /* DeprecatedGameTest.swift in Sources */,
 				199DB52E24DAF44F00E35187 /* RouterSpy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
