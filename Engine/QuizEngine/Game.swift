@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(*, deprecated) 
 public class Game<Question, Answer, R: Router> where R.Question == Question, R.Answer == Answer {
     let flow: Flow<R>
     
