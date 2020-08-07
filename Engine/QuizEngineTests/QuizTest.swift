@@ -45,13 +45,13 @@ import QuizEngine
         var handledResult:  Result<String, String>?
         var answerCallback: (String) -> Void = { _ in }
 
-        func handle(question: String, answerCallback: @escaping (String) -> Void) {
-            self.answerCallback = answerCallback
+        func answer(for: String, completion: @escaping (String) -> Void) {
+            self.answerCallback = completion
         }
         
         func handle(result: Result<String, String>) {
             handledResult = result
-        }
+        } 
      }
 }
 
