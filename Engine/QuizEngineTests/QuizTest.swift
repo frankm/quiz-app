@@ -41,7 +41,7 @@ import QuizEngine
         XCTAssertEqual(delegate.handledResult!.score,  2)
     }
     
-    private class DelegateSpy: Router, QuizDelegate {
+    private class DelegateSpy: QuizDelegate {
         var handledResult:  Result<String, String>?
         var answerCallback: (String) -> Void = { _ in }
 
@@ -51,14 +51,6 @@ import QuizEngine
         
         func handle(result: Result<String, String>) {
             handledResult = result
-        }
-        
-        func routeTo(question: String, answerCallback: @escaping AnswerCallback) {
-            handle(question: question, answerCallback: answerCallback)
-        }
-        
-        func routeTo(result: Result<String, String>) {
-            handle(result: result)
         }
      }
 }
