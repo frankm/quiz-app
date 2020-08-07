@@ -21,32 +21,32 @@ import QuizEngine
     }
     
     func test_startQuiz_answer0OutOf2Correctly_scores0() {
-        delegate.answerCallback("wrong")
-        delegate.answerCallback("wrong")
+        delegate.answerCompletion("wrong")
+        delegate.answerCompletion("wrong")
         
         XCTAssertEqual(delegate.handledResult!.score,  0)
     }
     
     func test_startQuiz_answer1OutOf2Correctly_scores1() {
-        delegate.answerCallback("A1")
-        delegate.answerCallback("wrong")
+        delegate.answerCompletion("A1")
+        delegate.answerCompletion("wrong")
         
         XCTAssertEqual(delegate.handledResult!.score,  1)
     }
     
     func test_startQuiz_answer2OutOf2Correctly_scores2() {
-        delegate.answerCallback("A1")
-        delegate.answerCallback("A2")
+        delegate.answerCompletion("A1")
+        delegate.answerCompletion("A2")
         
         XCTAssertEqual(delegate.handledResult!.score,  2)
     }
     
     private class DelegateSpy: QuizDelegate {
         var handledResult:  Result<String, String>?
-        var answerCallback: (String) -> Void = { _ in }
+        var answerCompletion: (String) -> Void = { _ in }
 
         func answer(for: String, completion: @escaping (String) -> Void) {
-            self.answerCallback = completion
+            self.answerCompletion = completion
         }
         
         func handle(result: Result<String, String>) {
