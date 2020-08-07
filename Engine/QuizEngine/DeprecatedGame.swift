@@ -1,5 +1,5 @@
 //
-//  Game.swift
+//  DeprecatedGame.swift
 //  QuizEngine
 //
 //  Created by Frank Morales on 7/26/20.
