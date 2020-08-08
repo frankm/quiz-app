@@ -49,13 +49,13 @@ private class QuizDelegateToRouterAdapter<R: Router>: QuizDelegate where R.Answe
     }
     
     func didCompleteQuiz(withAnswers answers: [(question: R.Question, answer: R.Answer)]) {
-        let answersDictionary = answers.reduce([R.Question: R.Answer]()) { acc, tuple in
+        let completedAnswers = answers.reduce([R.Question: R.Answer]()) { acc, tuple in
             var acc = acc
             acc[tuple.question] = tuple.answer
             return acc
         }
-        let score = scoring(answersDictionary, correctAnswers: correctAnswers)
-        let result = Result(answers: answersDictionary, score: score)
+        let score = scoring(completedAnswers, correctAnswers: correctAnswers)
+        let result = Result(answers: completedAnswers, score: score)
         router.routeTo(result: result)
     }
     
