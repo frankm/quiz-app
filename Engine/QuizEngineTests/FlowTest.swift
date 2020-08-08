@@ -77,13 +77,13 @@ class FlowTest: XCTestCase {
 
     }
     
-    func test_startAndAnswer1Question_with2Question_doesNotDelegateResultHandling() {
+    func test_startAndAnswer1Question_with2Question_doesNotCompleteQuiz() {
         let sut = makeSUT(questions: ["Q1", "Q2"])
         sut.start()
         
         delegate.answerCompletion("A1")
         
-        XCTAssertNil(delegate.handledResult)
+        XCTAssertTrue(delegate.completedQuizzes.isEmpty)
     }
     
     func test_startAndAnswer2Questions_with2Questions_delegatesResultHandling() {
