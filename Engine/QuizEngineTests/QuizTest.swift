@@ -14,7 +14,7 @@ import QuizEngine
     
     private var quiz: Quiz?
     
-    func test_startQuiz_answer0OutOf2Correctly_scores0() {
+    func test_startQuiz_answerAllQuestions_completesWithAnswers() {
         let delegate = DelegateSpy()
 
         quiz = Quiz.start(questions: ["Q1", "Q2"], delegate: delegate)
