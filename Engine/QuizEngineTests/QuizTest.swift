@@ -12,12 +12,12 @@ import QuizEngine
 
  class QuizTest: XCTestCase {
     
-    private var quiz: Quiz!
+    private var quiz: Quiz?
     
     func test_startQuiz_answer0OutOf2Correctly_scores0() {
         let delegate = DelegateSpy()
 
-        quiz = Quiz.start(questions: ["Q1", "Q2"], delegate: delegate, correctAnswers:  ["Q1": "A1", "Q2": "A2"])
+        quiz = Quiz.start(questions: ["Q1", "Q2"], delegate: delegate)
 
         delegate.answerCompletion("A1")
         delegate.answerCompletion("A2")
