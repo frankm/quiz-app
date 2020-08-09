@@ -6,8 +6,8 @@
 //  Copyright © 2020 Practice Swift. All rights reserved.
 //
 
-import Foundation
 import XCTest
+@testable import QuizApp
 
 class ScoreTest: XCTestCase {
     
@@ -48,13 +48,5 @@ class ScoreTest: XCTestCase {
          
          XCTAssertEqual(score, 1)
      }
-    
-    private class BasicScore {
-        static func score(for answers: [String], comparingTo correctAnswers: [String] = []) -> Int {
-            return zip(answers, correctAnswers).reduce(0) { score, tuple in
-                return score + (tuple.0 == tuple.1 ? 1 : 0)
-            }
-        }
-    }
 }
  
