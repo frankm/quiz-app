@@ -15,51 +15,45 @@ class ScoreTest: XCTestCase {
         XCTAssertEqual(BasicScore.score(for: [], comparingTo: []), 0)
     }
     
-    func test_oneWrongAnswer_scoresZero() {
-        XCTAssertEqual(BasicScore.score(for: ["wrong"], comparingTo: ["correct"]), 0)
+    func test_oneNonMatchingAnswer_scoresZero() {
+        XCTAssertEqual(BasicScore.score(for: ["not a match"], comparingTo: ["answer"]), 0)
 
     }
     
-    func test_oneCorrectAnswer_scoresOne() {
-        XCTAssertEqual(BasicScore.score(for: ["correct"], comparingTo: ["correct"]), 1)
+    func test_oneMatchingAnswer_scoresOne() {
+        XCTAssertEqual(BasicScore.score(for: ["answer"], comparingTo: ["answer"]), 1)
 
     }
   
-    func test_1CorrectAnswer1WrongAnswer_scoresOne() {
-        let score = BasicScore.score(for: ["correct1", "wrong"], comparingTo: ["correct1", "correct2"])
+    func test_1MatchingAnswer1NonMatchingAnswer_scoresOne() {
+        let score = BasicScore.score(for: ["answer1", "not a match"], comparingTo: ["answer1", "answer2"])
         
         XCTAssertEqual(score, 1)
     }
     
-    func test_2CorrectAnswers_scores2() {
-         let score = BasicScore.score(for: ["correct1", "correct2"], comparingTo: ["correct1", "correct2"])
+    func test_2MatchingAnswers_scores2() {
+         let score = BasicScore.score(for: ["answer1", "answer2"], comparingTo: ["answer1", "answer2"])
          
          XCTAssertEqual(score, 2)
      }
     
-    func test_withUnequalSizedData_2CorrectAnswers_scores2() {
-         let score = BasicScore.score(for: ["correct1", "correct2", "extra answer"], comparingTo: ["correct1", "correct2"])
+    func test_withTooManyAnswers_2MatchingAnswers_scores2() {
+         let score = BasicScore.score(for: ["answer1", "answer2", "extra answer"], comparingTo: ["answer1", "answer2"])
          
          XCTAssertEqual(score, 2)
      }
     
-    func test_correctDataLargerThanAnsweredData_2CorrectAnswers_scores2() {
-         let score = BasicScore.score(for: ["correct1", "correct2", ], comparingTo: ["correct1", "correct2", "correct3"])
+    func test_tooManyCorrectAnswers_1MatchingAnswer_scores1() {
+         let score = BasicScore.score(for: ["not a match", "answer2"], comparingTo: ["answer1", "answer2", "answer3"])
          
-         XCTAssertEqual(score, 2)
+         XCTAssertEqual(score, 1)
      }
     
     private class BasicScore {
         static func score(for answers: [String], comparingTo correctAnswers: [String] = []) -> Int {
-            if answers.isEmpty { return 0 }
-            var score = 0
-            for (index, answer) in answers.enumerated() {
-                if index >= correctAnswers.count { return score }
-                if answers[index] == correctAnswers[index] {
-                    score += 1
-                }
+            return zip(answers, correctAnswers).reduce(0) { score, tuple in
+                return score + (tuple.0 == tuple.1 ? 1 : 0)
             }
-            return score
         }
     }
 }
