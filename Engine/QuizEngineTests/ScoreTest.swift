@@ -20,9 +20,29 @@ class ScoreTest: XCTestCase {
 
     }
     
+    func test_oneCorrectAnswer_scoresOne() {
+        XCTAssertEqual(BasicScore.score(for: ["correct"], comparingTo: ["correct"]), 1)
+
+    }
+  
+    func test_1CorrectAnswer1WrongAnswer_scoresOne() {
+        let score = BasicScore.score(for: ["correct1", "wrong"], comparingTo: ["correct1", "correct2"])
+        
+        XCTAssertEqual(score, 1)
+    }
+    
+    
     private class BasicScore {
-        static func score(for: [Any], comparingTo: [Any] = []) -> Int {
-            return 0
+        static func score(for answers: [String], comparingTo correctAnswers: [String] = []) -> Int {
+            if answers.isEmpty { return 0 }
+            var score = 0
+            for (index, answer) in answers.enumerated() {
+                if answers[index] == correctAnswers[index] {
+                    score += 1
+                }
+            }
+            return score
         }
     }
 }
+ 
