@@ -12,9 +12,6 @@ import QuizEngine
 
 class ResultsPresenterTest: XCTestCase {
     
-    let singleAnswerQuestion = Question.singleAnswer("Q1")
-    let multipleAnswerQuestion = Question.multipleAnswer("Q2")
-    
     func test_title_returnsFormattedTitle() {
         XCTAssertEqual(makeSUT().title, "Result")
     }
@@ -29,18 +26,16 @@ class ResultsPresenterTest: XCTestCase {
     }
     
     func test_presentableAnswers_withoutAnswers_isEmpty() {
-        let answers = Dictionary<Question<String>, [String]>()
-        let result = Result.make(answers: answers, score: 0)
-        let sut = ResultsPresenter(result: result, questions: [], correctAnswers: [:])
+        let sut = makeSUT(userAnswers: [], correctAnswers: [])
         
         XCTAssertTrue(sut.presentableAnswers.isEmpty)
     }
     
     func test_presentableAnswers_withWrongSingleAnswer_mapsAnswer() {
-        let answers = [singleAnswerQuestion: ["A1"]]
-        let correctAnswers = [singleAnswerQuestion:  ["A2"]]
-        let result = Result.make(answers: answers, score: 0)
-        let sut = ResultsPresenter(result: result, questions: [singleAnswerQuestion], correctAnswers: correctAnswers)
+        let userAnswers = [(singleAnswerQuestion, ["A1"])]
+        let correctAnswers = [(singleAnswerQuestion,  ["A2"])]
+        
+        let sut = makeSUT(userAnswers: userAnswers, correctAnswers: correctAnswers)
         
         XCTAssertEqual(sut.presentableAnswers.count, 1)
         XCTAssertEqual(sut.presentableAnswers.first!.question, "Q1")
@@ -49,24 +44,22 @@ class ResultsPresenterTest: XCTestCase {
     }
     
     func test_presentableAnswers_withWrongMultipleAnswer_mapsAnswer() {
-         let answers = [multipleAnswerQuestion: ["A1", "A4"]]
-         let correctAnswers = [multipleAnswerQuestion:  ["A2", "A3"]]
-        let result = Result.make(answers: answers, score: 0)
-         let sut = ResultsPresenter(result: result, questions: [multipleAnswerQuestion], correctAnswers: correctAnswers)
-         
-         XCTAssertEqual(sut.presentableAnswers.count, 1)
-         XCTAssertEqual(sut.presentableAnswers.first!.question, "Q2")
-         XCTAssertEqual(sut.presentableAnswers.first!.answer, "A2, A3")
-         XCTAssertEqual(sut.presentableAnswers.first!.wrongAnswer, "A1, A4")
-     }
+        let userAnswers = [(multipleAnswerQuestion, ["A1", "A4"])]
+        let correctAnswers = [(multipleAnswerQuestion,  ["A2", "A3"])]
+        
+        let sut = makeSUT(userAnswers: userAnswers, correctAnswers: correctAnswers)
+        
+        XCTAssertEqual(sut.presentableAnswers.count, 1)
+        XCTAssertEqual(sut.presentableAnswers.first!.question, "Q2")
+        XCTAssertEqual(sut.presentableAnswers.first!.answer, "A2, A3")
+        XCTAssertEqual(sut.presentableAnswers.first!.wrongAnswer, "A1, A4")
+    }
     
     func test_presentableAnswers_with2MultipleQuestions_mapsOrderedAnswer() {
-        let answers = [multipleAnswerQuestion: ["A1", "A4"], singleAnswerQuestion: ["A2"]]
-        let correctAnswers = [multipleAnswerQuestion: ["A1", "A4"], singleAnswerQuestion: ["A2"]]
-        let orderedQuestions = [singleAnswerQuestion, multipleAnswerQuestion]
-        let result = Result.make( answers: answers, score: 0)
+        let userAnswers = [(singleAnswerQuestion, ["A2"]), (multipleAnswerQuestion, ["A1", "A4"])]
+        let correctAnswers = [(singleAnswerQuestion, ["A2"]), (multipleAnswerQuestion, ["A1", "A4"])]
 
-        let sut = ResultsPresenter(result: result, questions: orderedQuestions, correctAnswers: correctAnswers)
+        let sut = makeSUT(userAnswers: userAnswers, correctAnswers: correctAnswers)
 
         XCTAssertEqual(sut.presentableAnswers.count, 2)
         XCTAssertEqual(sut.presentableAnswers.first!.question, "Q1")
@@ -79,6 +72,9 @@ class ResultsPresenterTest: XCTestCase {
     }
     
     //MARK: - Helpers
+    
+    private let singleAnswerQuestion = Question.singleAnswer("Q1")
+    private let multipleAnswerQuestion = Question.multipleAnswer("Q2")
     
     private func makeSUT(
         userAnswers: ResultsPresenter.Answers = [],
