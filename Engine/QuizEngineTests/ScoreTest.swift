@@ -31,12 +31,30 @@ class ScoreTest: XCTestCase {
         XCTAssertEqual(score, 1)
     }
     
+    func test_2CorrectAnswers_scores2() {
+         let score = BasicScore.score(for: ["correct1", "correct2"], comparingTo: ["correct1", "correct2"])
+         
+         XCTAssertEqual(score, 2)
+     }
+    
+    func test_withUnequalSizedData_2CorrectAnswers_scores2() {
+         let score = BasicScore.score(for: ["correct1", "correct2", "extra answer"], comparingTo: ["correct1", "correct2"])
+         
+         XCTAssertEqual(score, 2)
+     }
+    
+    func test_correctDataLargerThanAnsweredData_2CorrectAnswers_scores2() {
+         let score = BasicScore.score(for: ["correct1", "correct2", ], comparingTo: ["correct1", "correct2", "correct3"])
+         
+         XCTAssertEqual(score, 2)
+     }
     
     private class BasicScore {
         static func score(for answers: [String], comparingTo correctAnswers: [String] = []) -> Int {
             if answers.isEmpty { return 0 }
             var score = 0
             for (index, answer) in answers.enumerated() {
+                if index >= correctAnswers.count { return score }
                 if answers[index] == correctAnswers[index] {
                     score += 1
                 }
