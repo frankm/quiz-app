@@ -9,17 +9,19 @@
 import UIKit
 import QuizEngine
 
-class iOSViewControllerFactory: ViewControllerFactory {
+final class iOSViewControllerFactory: ViewControllerFactory {
     typealias Answers = [(question: Question<String>, answers: [String])]
     
-    private let questions:  [Question<String>]
     private let options: Dictionary<Question<String>, [String]>
-    private let correctAnswers: () -> Answers
+    private let correctAnswers: Answers
+    
+    private var questions:  [Question<String>] {
+        return correctAnswers.map { $0.question }
+    }
     
     init(options: Dictionary<Question<String>, [String]>, correctAnswers: Answers) {
-        self.questions = correctAnswers.map { $0.question }
         self.options = options
-        self.correctAnswers = { correctAnswers}
+        self.correctAnswers = correctAnswers
     }
     
     func questionViewController(for question: Question<String>, answerCallback: @escaping ([String]) -> Void) -> UIViewController {
@@ -50,7 +52,7 @@ class iOSViewControllerFactory: ViewControllerFactory {
     func resultsViewController(for userAnswers: Answers) -> UIViewController {
          let presenter = ResultsPresenter(
                    userAnswers: userAnswers,
-                   correctAnswers: correctAnswers(),
+                   correctAnswers: correctAnswers,
                    scorer: BasicScore.score
                )
                let controller = ResultsViewController(summary: presenter.summary, answers: presenter.presentableAnswers)
@@ -62,7 +64,7 @@ class iOSViewControllerFactory: ViewControllerFactory {
         let presenter = ResultsPresenter(
             userAnswers: questions.map { question in
                 (question, result.answers[question]!)},
-            correctAnswers: correctAnswers(),
+            correctAnswers: correctAnswers,
             scorer: { _, _ in result.score}
         )
         let controller = ResultsViewController(summary: presenter.summary, answers: presenter.presentableAnswers)
