@@ -12,16 +12,6 @@ import UIKit
 @testable import QuizApp
 
 class NavigationControllerRouterTest: XCTestCase {
-    
-    let singleAnswerQuestion = Question.singleAnswer("Q1")
-    let singleAnswerQuestionQ2 = Question.singleAnswer("Q2")
-    let multipleAnswerQuestion = Question.multipleAnswer("Q1")
-
-    let navigationController = NonAnimatedNavigationController()
-    let factory = ViewControllerFactoryStub()
-    lazy var sut: NavigationControllerRouter = {
-        return NavigationControllerRouter(navigationController, factory: factory)
-    }()
 
     func test_answerForQuestion_showsQuestionController() {
         let vc1 = UIViewController()
@@ -100,7 +90,7 @@ class NavigationControllerRouterTest: XCTestCase {
         XCTAssertTrue(callbackWasFired)
     }
     
-    func test_routeToResult_showsResultController() {
+    func test_didCompleteQuiz_showsResultController() {
         let vc1 = UIViewController()
         let vc2 = UIViewController()
         
@@ -120,13 +110,23 @@ class NavigationControllerRouterTest: XCTestCase {
     
      //MARK: - Helpers
     
+    private let singleAnswerQuestion = Question.singleAnswer("Q1")
+    private let singleAnswerQuestionQ2 = Question.singleAnswer("Q2")
+    private let multipleAnswerQuestion = Question.multipleAnswer("Q1")
+
+    private let navigationController = NonAnimatedNavigationController()
+    private let factory = ViewControllerFactoryStub()
+    private lazy var sut: NavigationControllerRouter = {
+        return NavigationControllerRouter(navigationController, factory: factory)
+    }()
+
     class NonAnimatedNavigationController: UINavigationController {
         override func pushViewController(_ viewController: UIViewController, animated: Bool) {
             super.pushViewController(viewController, animated: false)
         }
     }
     
-    class ViewControllerFactoryStub: ViewControllerFactory {
+    private class ViewControllerFactoryStub: ViewControllerFactory {
         private var stubbedQuestions = Dictionary<Question<String>, UIViewController>()
         private var stubbedResults = Dictionary<[Question<String>], UIViewController>()
         
@@ -147,10 +147,6 @@ class NavigationControllerRouterTest: XCTestCase {
         
         func resultsViewController(for userAnswers: Answers) -> UIViewController {
             return stubbedResults[userAnswers.map { $0.question }] ?? UIViewController()
-        }
-    
-        func resultsViewController(for result: Result<Question<String>, [String]>) -> UIViewController {
-            return UIViewController()
         }
     }
 }
