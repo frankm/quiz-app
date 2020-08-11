@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
 
         guard let windowScene = (scene as? UIWindowScene) else { return }
-        _ = UIWindow(windowScene: windowScene)
+        let window = UIWindow(windowScene: windowScene)
 
         let question1 = Question.singleAnswer("What is Mike's nationality?")
         let question2 = Question.multipleAnswer("What are Caio's nationality?")
@@ -42,9 +42,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         quiz = Quiz.start(questions: questions, delegate: router)
 
-//        window.rootViewController = navigationController
-//        window.makeKeyAndVisible()
-//        self.window = window
+        window.rootViewController = navigationController
+        window.makeKeyAndVisible()
+        self.window = window
     }
 }
 
