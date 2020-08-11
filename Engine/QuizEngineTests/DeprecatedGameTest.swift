@@ -1,5 +1,5 @@
 //
-//  GameTest.swift
+//  DeprecatedGameTest.swift
 //  QuizEngineTests
 //
 //  Created by Frank Morales on 7/26/20.
@@ -9,10 +9,11 @@
 import XCTest
 import QuizEngine
 
-class GameTest: XCTestCase {
+@available(*, deprecated)
+class DeprecatedGameTest: XCTestCase {
     
-    let router = RouterSpy()
-    var game: Game<String, String, RouterSpy>!
+    private let router = RouterSpy()
+    private var game: Game<String, String, RouterSpy>!
     
     override func setUp() {
         super.setUp()
@@ -39,4 +40,19 @@ class GameTest: XCTestCase {
         
         XCTAssertEqual(router.routedResult!.score,  2)
     }
+    
+    private class RouterSpy: Router {
+        var routedResult:  Result<String, String>?
+        var answerCallback: (String) -> Void = { _ in }
+
+        func routeTo(question: String, answerCallback: @escaping (String) -> Void) {
+            self.answerCallback = answerCallback
+        }
+        
+        func routeTo(result: Result<String, String>) {
+            routedResult = result
+        }
+     }
 }
+
+

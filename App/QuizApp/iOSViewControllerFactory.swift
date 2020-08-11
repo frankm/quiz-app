@@ -9,15 +9,18 @@
 import UIKit
 import QuizEngine
 
-class iOSViewControllerFactory: ViewControllerFactory {
+final class iOSViewControllerFactory: ViewControllerFactory {
+    typealias Answers = [(question: Question<String>, answer: [String])]
     
-    private let questions:  [Question<String>]
     private let options: Dictionary<Question<String>, [String]>
-    private let correctAnswers: Dictionary<Question<String>, [String]>
-
-    init(questions: [Question<String>], options: Dictionary<Question<String>, [String]>, correctAnswers: Dictionary<Question<String>, [String]>) {
+    private let correctAnswers: Answers
+    
+    private var questions:  [Question<String>] {
+        return correctAnswers.map { $0.question }
+    }
+    
+    init(options: Dictionary<Question<String>, [String]>, correctAnswers: Answers) {
         self.options = options
-        self.questions = questions
         self.correctAnswers = correctAnswers
     }
     
@@ -46,12 +49,14 @@ class iOSViewControllerFactory: ViewControllerFactory {
             return controller
     }
     
-    func resultsViewController(for result: Result<Question<String>, [String]>) -> UIViewController {
-        let presenter = ResultsPresenter(result: result, questions: questions, correctAnswers: correctAnswers)
-        let controller = ResultsViewController(summary: presenter.summary, answers: presenter.presentableAnswers)
-        controller.title = presenter.title
-        return controller
-    }
-    
-    
+    func resultsViewController(for userAnswers: Answers) -> UIViewController {
+         let presenter = ResultsPresenter(
+                   userAnswers: userAnswers,
+                   correctAnswers: correctAnswers,
+                   scorer: BasicScore.score
+               )
+               let controller = ResultsViewController(summary: presenter.summary, answers: presenter.presentableAnswers)
+               controller.title = presenter.title
+               return controller
+    }    
 }

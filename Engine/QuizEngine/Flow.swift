@@ -8,46 +8,49 @@
 
 import Foundation
 
-class Flow <R: Router> {
-    typealias Question = R.Question
-    typealias Answer = R.Answer
+final class Flow <Delegate: QuizDelegate> {
+    typealias Question = Delegate.Question
+    typealias Answer = Delegate.Answer
 
-    private let router: R
+    private let delegate: Delegate
     private let questions: [Question]
-    private var answers = [Question: Answer]()
-    private var scoring: ([Question: Answer]) -> Int
+    private var answers = [(Question, Answer)]()
 
-    init(questions: [Question], router: R, scoring: @escaping ([Question: Answer]) -> Int) {
+    init(questions: [Question], delegate: Delegate) {
         self.questions = questions
-        self.router = router
-        self.scoring = scoring
+        self.delegate = delegate
     }
     
     func start() {
-        routeToQuestion(at: questions.startIndex)
+        delegateQuestionHandling(at: questions.startIndex)
     }
     
-    private func routeToQuestion(at index: Int) {
+    private func delegateQuestionHandling(at index: Int) {
         if index < questions.endIndex {
             let question = questions[index]
-            router.routeTo(question: question, answerCallback: callback(for: question, at: index))
+            delegate.answer(for: question, completion: answer(for: question, at: index))
         } else {
-            router.routeTo(result: result())
+            delegate.didCompleteQuiz(withAnswers: answers )
         }
     }
     
-    private func routeToQuestion(after index: Int) {
-        routeToQuestion(at: questions.index(after: index))
+    private func delegateQuestionHandling(after index: Int) {
+        delegateQuestionHandling(at: questions.index(after: index))
     }
     
-    private func callback(for question: Question, at index: Int) -> (Answer) -> Void {
+    private func answer(for question: Question, at index: Int) -> (Answer) -> Void {
         return { [weak self] answer in
-            self?.answers[question] = answer
-            self?.routeToQuestion(after: index)
+            self?.answers.replaceOrInsert((question, answer), at: index)
+            self?.delegateQuestionHandling(after: index)
         }
     }
-    
-    private func result() -> Result<Question, Answer> {
-        return Result(answers: answers, score: scoring(answers))
+}
+
+private extension Array {
+    mutating func replaceOrInsert(_ element: Element, at index: Index) {
+        if index < count {
+            remove(at: index)
+        }
+        insert(element, at: index)
     }
 }
