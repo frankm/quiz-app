@@ -2,6 +2,5 @@
 
 iOS Quiz app developed using TDD.
 
-[![Build Status](https://travis-ci.com/frankm/quiz-app.svg?branch=master)](https://travis-ci.com/frankm/quiz-app)
-
+![CI](https://github.com/frankm/quiz-app/workflows/CI/badge.svg)
 
